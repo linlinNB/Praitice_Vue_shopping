@@ -9,7 +9,48 @@
       </p>
     </div>
     <!-- 数据预测相关属性的选择 -->
-    <div></div>
+    <div class="sales-board-form">
+      <div class="sales-board-line">
+          <div class="sales-board-line-left">
+            购买数量：
+          </div>
+
+          <div class="sales-board-line-right">
+            <my-numberchoose></my-numberchoose>
+          </div>
+      </div>
+
+      <div class="sales-board-line">
+        <div class="sales-board-line-left">
+          媒介：
+        </div>
+
+        <div class="sales-board-line-right">
+          <my-multiplechhose v-bind:versionList="this.versionList"></my-multiplechhose>
+        </div>
+      </div>
+
+      <div class="sales-board-line">
+        <div class="sales-board-line-left">
+          有效时间：
+        </div>
+
+        <div class="sales-board-line-right">
+          测试ing-》1年
+        </div>
+      </div>
+
+      <div class="sales-board-line">
+        <div class="sales-board-line-left">
+          总价：
+        </div>
+
+        <div class="sales-board-line-right">
+          不进行computed计算的结果
+
+        </div>
+      </div>
+    </div>
     <!-- 数据预测相关产品信息 -->
     <div class="sales-board-des">
       <h2>产品说明</h2>
@@ -23,6 +64,45 @@
 </template>
 
 <script>
+  import numberchoose from '../NumberChoose.vue';
+  import multiplechoose from '../MultipleChoose.vue';
+  export default {
+    props:{
+
+    },
+    components: {
+      "my-numberchoose": numberchoose,
+      "my-multiplechhose": multiplechoose
+    },
+    data(){
+      return {
+        versionList: [
+          {
+            label: '纸质报告',
+            value: 0
+          },
+          {
+            label: 'pdf',
+            value: 1
+          },
+          {
+            label: '页面报告',
+            value: 2
+          },
+          {
+            label: '邮件',
+            value: 3
+          }
+        ]
+      }
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+  }
 </script>
 
 <style scoped>

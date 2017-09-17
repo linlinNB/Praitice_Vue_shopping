@@ -15,7 +15,19 @@
           产品类型
         </div>
         <div class="sales-board-line-right">
-          <p>这里需要抽象成一个组件</p>
+          <!--<p>这里需要抽象成一个组件</p>-->
+          <my-simple-choose v-bind:selectList="this.buyTypes">
+          </my-simple-choose>
+        </div>
+      </div>
+
+      <div class="sales-board-line">
+        <div class="sales-board-line-left">
+          购买数量:
+        </div>
+        <div class="sales-board-line-right">
+          <!--<p>这里需要抽象成一个组件</p>-->
+          <my-number-choose></my-number-choose>
         </div>
       </div>
 
@@ -33,7 +45,7 @@
           总价：
         </div>
         <div class="sales-board-line-right">
-          500 元
+          {{ this.show_total_price }} 元
         </div>
       </div>
       <!-- 设置购买按钮 -->
@@ -248,6 +260,72 @@
 </template>
 
 <script>
+  import simple_choose from '../SimpleChoose.vue'
+  import number_choose from '../NumberChoose.vue'
+  export default {
+    components:{
+      "my-simple-choose": simple_choose,
+      "my-number-choose": number_choose
+    },
+    data(){
+      return {
+        buyTypes: [
+          {
+            label: '每月统计',
+            value: 200
+          },
+          {
+            label: '每季统计',
+            value: 500
+          },
+          {
+            label: '每年统计',
+            value: 1000
+          }
+        ],
+        districts: [
+          {
+            label: '北京',
+            value: 2000
+          },
+          {
+            label: '上海',
+            value: 3000
+          },
+          {
+            label: '广州',
+            value: 4000
+          },
+          {
+            label: '天津',
+            value: 5000
+          },
+          {
+            label: '武汉',
+            value: 6000
+          },
+          {
+            label: '重庆',
+            value: 7000
+          },
+        ],
+        total_number: 0
+      }
+    },
+    methods:{
+    },
+    computed:{
+      show_total_price: function () {
+        /* 为什么不直接使用store.state中的数据呢？
+         *
+          *   因为这样写可以一定程度上解耦合，方便以后页面的修改，DOM结构的变化并不影响数据的变化
+          * */
+        /*return this.$store.state.total_price;*/
+        console.log(this.$store.state.total_price);
+        return this.$store.state.total_price;
+      }
+    }
+  }
 </script>
 
 <style scoped>
